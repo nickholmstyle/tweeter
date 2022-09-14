@@ -19,10 +19,20 @@ body {
   background-color: #f4f1ec;
   font-size: 24px;
   font-family: "Source Sans Pro", sans-serif;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
 
 }
 
-
+.container {
+  width: 90%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: flex-end;
+  background-color: #f4f1ec;
+}
 
 /*
  * Additional CSS can be defined below or in other CSS files, as per instructions
