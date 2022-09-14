@@ -19,14 +19,14 @@ nav p {
   font-size: 1.25em;
 }
 
-.new-tweet {
+.new-tweet-button {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: flex-end;
   height: 100%;
 }
-.new-tweet i {
+.new-tweet-button i {
   color: #ff0000;
 }
 

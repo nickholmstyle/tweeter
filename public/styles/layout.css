@@ -34,6 +34,33 @@ body {
   background-color: #f4f1ec;
 }
 
+.new-tweet {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.new-tweet-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+
+
+.tweet-button {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+}
+
+.counter {
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: flex-end;
+}
+
+
 /*
  * Additional CSS can be defined below or in other CSS files, as per instructions
  
