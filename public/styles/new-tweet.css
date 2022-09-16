@@ -44,3 +44,7 @@ label {
 .counter {
   text-align: right;
 }
+
+.red-text {
+  color: red;
+}
