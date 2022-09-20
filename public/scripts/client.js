@@ -52,7 +52,7 @@ $(() => {
       const $container = $('.tweets')
       $container.empty();
   
-      tweets.forEach(function(tweet) {
+      tweets.reverse().forEach(function(tweet) {
         let tweetElement = createTweetElement(tweet);
         $container.append(tweetElement);
       });
@@ -94,6 +94,8 @@ $(() => {
       error: function() {
         console.log(`error`)
       }
+    }).then(() => {
+      return loadTweets()
     })
   })
 
