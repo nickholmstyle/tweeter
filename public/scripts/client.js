@@ -10,54 +10,13 @@
 $(() => {
   
 
-  const data = [
-    {
-      "user": {
-        "name": "Newton",
-        "avatars": "https://i.imgur.com/73hZDYK.png"
-        ,
-        "handle": "@SirIsaac"
-      },
-      "content": {
-        "text": "If I have seen further it is by standing on the shoulders of giants"
-      },
-      "created_at": 1461116232227
-    },
-    {
-      "user": {
-        "name": "Descartes",
-        "avatars": "https://i.imgur.com/nlhLi3I.png",
-        "handle": "@rd" },
-      "content": {
-        "text": "Je pense , donc je suis"
-      },
-      "created_at": 1461113959088
-    }
-  ]
-
-  const renderTweets = function(tweets) {
-  // loops through tweets
-  // calls createTweetElement for each tweet
-  // takes return value and appends it to the tweets container
-
-    const $container = $('.tweets')
-    $container.empty();
-
-    tweets.forEach(function(tweet) {
-      let tweetElement = createTweetElement(tweet);
-      $container.append(tweetElement);
-    });
-
-  };
-
+//This is the tweet element
   const createTweetElement = function(tweetData) {
 
 
     // const $tweet = $(`<article class="tweet">Hello world</article>`);
     let $tweet = $("<article>").addClass("tweet");
 
-    // let postDate = tweetData.created_at;
-    // let tweetAge = moment(postDate).fromNow();
 
 
     let html = `
@@ -70,7 +29,7 @@ $(() => {
           <p>${(tweetData.content.text)}</p>
         </div>
       <footer class="tweet-footer">
-        <small class="footer-age">${tweetData.created_at}</small>
+        <small class="footer-age">${timeago.format(tweetData.created_at)}</small>
         <span class="icons">
           <i class="fa-solid fa-flag"></i>
           <i class="fas fa-retweet"></i>
@@ -81,6 +40,72 @@ $(() => {
     let element = $tweet.append(html)
     return element;
   };
-  renderTweets(data);
+  
+  
+  //This renders the tweets
+
+  const renderTweets = function(tweets) {
+    // loops through tweets
+    // calls createTweetElement for each tweet
+    // takes return value and appends it to the tweets container
+  
+      const $container = $('.tweets')
+      $container.empty();
+  
+      tweets.forEach(function(tweet) {
+        let tweetElement = createTweetElement(tweet);
+        $container.append(tweetElement);
+      });
+  
+    };
+
+  
+  
+  // renderTweets(data);
+
+  //Submit tweet
+  $(".new-tweet-form").submit(function(event) {
+    event.preventDefault();
+
+    const $data = $(this).serialize();
+    // const $input = $(".form-textarea")
+
+    const $textValue = $(".form-textarea").val();
+    
+    if (!$textValue.trim()) {
+      window.alert('Input is empty');
+      return false;
+    }
+
+    if ($textValue.length > 140) {
+      window.alert(`You've exceed the max input`);
+      return;
+    }
+
+ 
+
+    $.ajax({
+      type: 'POST',
+      url: '/tweets',
+      data: $data,
+      success: function() {
+        console.log(`succesful`)
+      },
+      error: function() {
+        console.log(`error`)
+      }
+    })
+  })
+
+  const loadTweets = () => {
+    return $.ajax('/tweets', { method: 'GET' })
+      .then((data) => {
+        renderTweets(data);
+      });
+  };
+  loadTweets()
+
+
 
 });
+

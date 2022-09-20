@@ -1,24 +1,3 @@
-// $(document).ready(() => {
-  
-//   const tweetText = $('.new-tweet')
-  
-//   tweetText.on('input', 'textarea', function() {
-//     let inputValue = $(this).val();
-//     let counter = 10 - inputValue.length;
-
-//     const characterCountHtml = $(this).siblings('.tweet-footer').children('.char-counter');
-//     characterCountHtml.text(140 - inputValue.length);
-
-//     if (counter >= 0) {
-//       characterCountHtml.removeClass('red-text');
-//     }
-//     if (counter < 0) {
-//       characterCountHtml.addClass('red-text');
-//     }
-
-//   });
-// });
-
 $(() => {
   $(".form-textarea"). on("input", onInput);
 });
@@ -35,7 +14,8 @@ const onInput = function(event) {
   $counter.text(charsLeft);
 
   if (charsLeft < 0) {
-    return $counter.addClass('.red-text');
+    console.log(`i got here`)
+    return $counter.addClass('red-text');
   }
-  $counter.removeClass('.red-text');
+  $counter.removeClass('red-text');
 }
