@@ -6,4 +6,5 @@
 
 ## SCREENSHOTS
 
-!["Desktop view"](https://github.com/nickholmstyle/tweeter/blob/master/public/images/Big_Sample.png?raw=true)
+!["Desktop View"](https://github.com/nickholmstyle/tweeter/blob/master/public/images/Big_Sample.png?raw=true)
+!["Small Device View"](https://github.com/nickholmstyle/tweeter/blob/master/public/images/Small_Sample.png?raw=true)
