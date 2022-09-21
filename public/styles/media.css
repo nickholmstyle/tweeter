@@ -1,0 +1,21 @@
+@media only screen and (min-width: 1024px) {
+  body {
+    flex-direction: row;
+  }
+
+  main.container {
+    margin: 200px 10% 5% 0;
+  }
+
+  header.page-header {
+    margin: 200px 5% 5% 10%;
+    width: 60%;
+    height: 60;
+  }
+
+  article.tweet-main {
+    width: 100%;
+    margin-top: 0;
+  }
+
+}

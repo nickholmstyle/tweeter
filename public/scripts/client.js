@@ -4,12 +4,13 @@
  * Reminder: Use (and do all your DOM work in) jQuery's document ready function
  */
 
+// const { text } = require("body-parser");
 // Fake data taken from initial-tweets.json
 
 
 $(() => {
   
-   //Prevent js from being injected in tweets from the form
+  //Prevent js from being injected in tweets from the form
   const escape = (str) => {
     let div = document.createElement('div');
     div.appendChild(document.createTextNode(str));
@@ -18,7 +19,7 @@ $(() => {
 
 
 
-//This is the tweet element
+  //This is the tweet element
   const createTweetElement = function(tweetData) {
 
 
@@ -72,7 +73,9 @@ $(() => {
   // renderTweets(data);
 
   //Submit tweet
-  $(".new-tweet-form").submit(function(event) {
+
+  const $tweetText = $(".new-tweet-form");
+  $tweetText.submit(function(event) {
     event.preventDefault();
 
     const $data = $(this).serialize();
@@ -81,16 +84,14 @@ $(() => {
     const $textValue = $(".form-textarea").val();
     
     if (!$textValue.trim()) {
-      window.alert('Input is empty');
+      errorMessage('*** Input is empty! ***');
       return false;
     }
 
     if ($textValue.length > 140) {
-      window.alert(`You've exceed the max input`);
+      errorMessage(`*** You've exceeded the max of 140! ***`);
       return;
     }
-
- 
 
     $.ajax({
       type: 'POST',
@@ -114,6 +115,18 @@ $(() => {
       });
   };
   loadTweets()
+
+  const $errorMessage = $('.error-message')
+  
+  const errorMessage = (message) => {
+    $errorMessage.text(message).slideDown('slow');
+  };
+
+  $tweetText.on('input', () => {
+    $errorMessage.slideUp('slow', () => {
+      $errorMessage.hide();
+    })
+  })
 
 
 

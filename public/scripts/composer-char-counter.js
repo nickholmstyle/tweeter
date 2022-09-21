@@ -6,7 +6,7 @@ const onInput = function(event) {
   
   let $input = $(this);
   let len = $input.val().length;
-  let charsLeft = 10 - len;
+  let charsLeft = 140 - len;
 
   const $form = $input.closest('section');
   const $counter = $form.find('.counter')
