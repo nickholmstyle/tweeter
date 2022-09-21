@@ -1,32 +1,22 @@
-/*
- * Client-side JS logic goes here
- * jQuery is already loaded
- * Reminder: Use (and do all your DOM work in) jQuery's document ready function
- */
-
-// const { text } = require("body-parser");
-// Fake data taken from initial-tweets.json
-
-
+//Doc ready
 $(() => {
+
+  //Helpers
+  const $errorMessage = $('.error-message');
+  const $tweetText = $(".new-tweet-form");
   
-  //Prevent js from being injected in tweets from the form
+  //Prevent js from being injected in tweets from the form.
   const escape = (str) => {
     let div = document.createElement('div');
     div.appendChild(document.createTextNode(str));
     return div.innerHTML;
   };
 
+  //This is the tweet element as a template literal with data from server side database.
 
-
-  //This is the tweet element
   const createTweetElement = function(tweetData) {
 
-
-    // const $tweet = $(`<article class="tweet">Hello world</article>`);
     let $tweet = $("<article>").addClass("tweet");
-
-
 
     let html = `
       <header class="tweet-header">
@@ -50,46 +40,46 @@ $(() => {
     return element;
   };
   
-  
-  //This renders the tweets
-
+  //Calls createTweetElement for each tweet and takes return value and appends it to the tweets container.
+  //Renders the tweet in reverse to display most recent tweet at the top.
   const renderTweets = function(tweets) {
-    // loops through tweets
-    // calls createTweetElement for each tweet
-    // takes return value and appends it to the tweets container
   
-      const $container = $('.tweets')
-      $container.empty();
+    const $container = $('.tweets')
+    $container.empty();
   
-      tweets.reverse().forEach(function(tweet) {
-        let tweetElement = createTweetElement(tweet);
-        $container.append(tweetElement);
+    tweets.reverse().forEach(function(tweet) {
+      let tweetElement = createTweetElement(tweet);
+      $container.append(tweetElement);
+    });
+  
+  };
+
+  //loads the rendered tweet data to the client.
+  const loadTweets = () => {
+    return $.ajax('/tweets', { method: 'GET' })
+      .then((data) => {
+        renderTweets(data);
       });
-  
-    };
+  };
 
+  //Initial load of tweets.
+  loadTweets()
   
+  //Tweet submission form. Default event prevented. Message sent to user if conditions were not met.
   
-  // renderTweets(data);
-
-  //Submit tweet
-
-  const $tweetText = $(".new-tweet-form");
   $tweetText.submit(function(event) {
     event.preventDefault();
 
     const $data = $(this).serialize();
-    // const $input = $(".form-textarea")
-
     const $textValue = $(".form-textarea").val();
     
     if (!$textValue.trim()) {
-      errorMessage('*** Input is empty! ***');
+      errorMessage('Tweet here pretty please!');
       return false;
     }
 
     if ($textValue.length > 140) {
-      errorMessage(`*** You've exceeded the max of 140! ***`);
+      errorMessage(`You've exceeded the max of 140!`);
       return;
     }
 
@@ -106,29 +96,19 @@ $(() => {
     }).then(() => {
       return loadTweets()
     })
-  })
+  });
 
-  const loadTweets = () => {
-    return $.ajax('/tweets', { method: 'GET' })
-      .then((data) => {
-        renderTweets(data);
-      });
-  };
-  loadTweets()
-
-  const $errorMessage = $('.error-message')
-  
+  //Animates the error message.
   const errorMessage = (message) => {
     $errorMessage.text(message).slideDown('slow');
   };
 
+  //Hides the error message after text is entered or reduced after excceding the limit.
   $tweetText.on('input', () => {
     $errorMessage.slideUp('slow', () => {
       $errorMessage.hide();
     })
   })
-
-
 
 });
 

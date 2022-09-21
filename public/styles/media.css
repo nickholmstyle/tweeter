@@ -1,10 +1,13 @@
-@media only screen and (min-width: 1024px) {
+/*small laptop to desktop size*/
+
+@media only screen and (min-width: 961px) {
   body {
     flex-direction: row;
   }
 
   main.container {
     margin: 200px 10% 5% 0;
+    padding: 20px;
   }
 
   header.page-header {
@@ -14,8 +17,43 @@
   }
 
   article.tweet-main {
-    width: 100%;
+    width: 90%;
+    margin-top: 0;
+    padding: 20px;
+  }
+
+
+
+}
+
+/*small laptop and small device size*/
+@media only screen and (max-width: 960px) {
+  body nav {
+    background-color:	#ffe02f;
+    background-image: url(/images/brick-wall-dark.png);
+    position: relative;
+  }
+  body nav p {
+    margin: 0;
+    font-size: 20px;
+  }
+
+  header.page-header {
     margin-top: 0;
   }
 
+  main.container {
+    margin-left: 5%;
+    margin-right: 5%;
+
+  }
+
+  article.tweet-main {
+    width: 90%;
+  }
+
+  main div.name-plate h2 {
+    font-size: 1em;
+  }
+  
 }

@@ -1,7 +1,10 @@
+// Doc ready, experimenting with some refactoring.
 $(() => {
   $(".form-textarea"). on("input", onInput);
 });
 
+//Implementing the counter function when user inputs data using the keyboard to display the characters left.
+//Turns red when the user has exceeded 140.
 const onInput = function(event) {
   
   let $input = $(this);
@@ -14,7 +17,6 @@ const onInput = function(event) {
   $counter.text(charsLeft);
 
   if (charsLeft < 0) {
-    console.log(`i got here`)
     return $counter.addClass('red-text');
   }
   $counter.removeClass('red-text');

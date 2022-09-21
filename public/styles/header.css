@@ -1,3 +1,5 @@
+/*Page header styles*/
+
 .page-header {
   height: 400px;
   margin-top: 120px;
@@ -12,5 +14,9 @@
 
 header img {
   margin-top: 15%;
+}
+
+h2.user-username {
+  color: rgb(37, 36, 36);
 }
 

@@ -1,3 +1,5 @@
+/*Tweets Posted Styles*/
+
 .tweet {
 
   border: #545149 solid 2px;
@@ -6,8 +8,6 @@
   padding-right: 2%;
   background-color: #f4f1ec;
   
-  /* align-items: center;
-  word-wrap: break-word; */
 }
 
 article.tweet:hover {
@@ -32,10 +32,22 @@ footer {
   align-items: baseline;
 }
 
-/* .icons { 
-
-} */
-
 .icons i:hover {
   color:#e1c319;
+}
+
+img.tweet-avatar {
+  margin-top: 10px;
+}
+
+small.tweet-handle {
+  margin-top: 10px;
+}
+
+h2.tweet-name {
+  justify-content: center;
+}
+
+section.tweets {
+  padding: 20px;
 }
