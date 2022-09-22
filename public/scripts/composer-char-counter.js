@@ -12,7 +12,7 @@ const onInput = function(event) {
   let charsLeft = 140 - len;
 
   const $form = $input.closest('section');
-  const $counter = $form.find('.counter')
+  const $counter = $form.find('.counter');
 
   $counter.text(charsLeft);
 

@@ -88,7 +88,9 @@ $(() => {
       url: '/tweets',
       data: $data,
       success: function() {
-        console.log(`succesful`)
+        console.log(`succesful`);
+        $(".form-textarea").val('');
+        $('.counter').html(140);
       },
       error: function() {
         console.log(`error`)

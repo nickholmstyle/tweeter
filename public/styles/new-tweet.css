@@ -51,18 +51,3 @@
   border: #cf3b3b solid 2px;
 }
 
-img.tweet-avatar {
-  margin-top: 10px;
-}
-
-small.tweet-handle {
-  margin-top: 10px;
-}
-
-h2.tweet-name {
-  justify-content: center;
-}
-
-section.tweets {
-  padding: 20px;
-}
